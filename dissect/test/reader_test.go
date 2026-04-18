@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	"github.com/go-test/deep"
-	"github.com/redraskal/r6-dissect/dissect"
+	"github.com/lumina-r6/siege-dissect/dissect"
 )
 
 // withFile provides a wrapper for reading and closing a file

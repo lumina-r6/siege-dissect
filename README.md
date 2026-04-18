@@ -1,12 +1,17 @@
-# r6-dissect
-[![](https://discordapp.com/api/guilds/936737628756271114/widget.png?style=shield)](https://discord.gg/XdEXWQZZAa)
-[![Go Reference](https://pkg.go.dev/badge/github.com/redraskal/r6-dissect.svg)](https://pkg.go.dev/github.com/redraskal/r6-dissect)
+# siege-dissect
+[![Go Reference](https://pkg.go.dev/badge/github.com/lumina-r6/siege-dissect.svg)](https://pkg.go.dev/github.com/lumina-r6/siege-dissect)
 
 Match Replay API/CLI for Rainbow Six: Siege's Dissect (.rec) format.
 
+A maintained fork of [redraskal/r6-dissect](https://github.com/redraskal/r6-dissect),
+extended for coach-facing analysis work in the [Lumina R6](https://github.com/lumina-r6)
+toolchain. Upstream credit and original design belong to Benjamin Ryan and
+all prior contributors; this fork exists to land season-compatibility and
+correctness fixes that the original repository hasn't absorbed.
+
 **This is a work in progress. The data format is subject to change until a stable version is released.**
 
-Download the latest version here: https://github.com/redraskal/r6-dissect/releases
+Download the latest version here: https://github.com/lumina-r6/siege-dissect/releases
 
 ## Current Features
 - Match Info (Game version, map, gamemode, match type, teams, players)
@@ -19,14 +24,12 @@ Download the latest version here: https://github.com/redraskal/r6-dissect/releas
 - Track movement packets
 - Track other player statistics
 
-### See roadmap at https://github.com/users/redraskal/projects/1.
-
 ## CLI Usage
 Print a match overview by specifying a match folder or .rec file:
 ```bash
-r6-dissect --info Match-2023-03-13_23-23-58-199
+siege-dissect --info Match-2023-03-13_23-23-58-199
 # or
-r6-dissect --info Match-2023-03-13_23-23-58-199-R01.rec
+siege-dissect --info Match-2023-03-13_23-23-58-199-R01.rec
 ```
 ```
 5:20PM INF Version:          Y8S1/7422506
@@ -39,7 +42,7 @@ r6-dissect --info Match-2023-03-13_23-23-58-199-R01.rec
 ```
 You can export round stats to a JSON file:
 ```bash
-r6-dissect Match-2023-03-13_23-23-58-199-R01.rec -o round.json
+siege-dissect Match-2023-03-13_23-23-58-199-R01.rec -o round.json
 ```
 Example:
 ```json
@@ -115,21 +118,21 @@ Example:
 ```
 Or the entire match:
 ```bash
-r6-dissect Match-2023-03-13_23-23-58-199 -o match.json
+siege-dissect Match-2023-03-13_23-23-58-199 -o match.json
 ```
 Export an Excel spreadsheet by swapping .json with .xlsx.
 ```bash
-r6-dissect Match-2023-03-13_23-23-58-199-R01 -o match.xlsx
+siege-dissect Match-2023-03-13_23-23-58-199-R01 -o match.xlsx
 ```
 Output JSON to the console (stdout) with the following syntax:
 ```bash
 # entire match
-r6-dissect Match-2023-03-13_23-23-58-199-R01
+siege-dissect Match-2023-03-13_23-23-58-199-R01
 # or single round
-r6-dissect Match-2023-03-13_23-23-58-199-R01/Match-2023-03-13_23-23-58-199-R01.rec
+siege-dissect Match-2023-03-13_23-23-58-199-R01/Match-2023-03-13_23-23-58-199-R01.rec
 ```
 
-See example outputs in [/examples](https://github.com/redraskal/r6-dissect/tree/main/examples).
+See example outputs in [/examples](https://github.com/lumina-r6/siege-dissect/tree/main/examples).
 
 ## Importing a .rec file
 ```go
@@ -139,7 +142,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/redraskal/r6-dissect/dissect"
+	"github.com/lumina-r6/siege-dissect/dissect"
 )
 
 func main() {
@@ -161,5 +164,6 @@ func main() {
 }
 ```
 
-#
-I would like to thank [stnokott](https://github.com/stnokott) for their work on r6-dissect, along with [draguve](https://github.com/draguve) & other contributors at [draguve/R6-Replays](https://github.com/draguve/R6-Replays) for their additional reverse engineering work.
+## Credits
+
+This project is a fork of [redraskal/r6-dissect](https://github.com/redraskal/r6-dissect) by Benjamin Ryan, originally MIT-licensed in 2022. Core reverse engineering credit additionally goes to [stnokott](https://github.com/stnokott) for upstream work on r6-dissect, and to [draguve](https://github.com/draguve) and other contributors at [draguve/R6-Replays](https://github.com/draguve/R6-Replays).

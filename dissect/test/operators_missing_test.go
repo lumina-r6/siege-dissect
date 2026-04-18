@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/redraskal/r6-dissect/dissect/ubi"
+	"github.com/lumina-r6/siege-dissect/dissect/ubi"
 )
 
 func Test_operatorsMissing(tt *testing.T) {

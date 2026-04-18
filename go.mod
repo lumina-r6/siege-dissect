@@ -1,4 +1,4 @@
-module github.com/redraskal/r6-dissect
+module github.com/lumina-r6/siege-dissect
 
 go 1.23
 
