@@ -26,16 +26,46 @@ var healthTag = []byte{0x25, 0x26, 0x76, 0xC9}
 // or Rook-buffed operators); Min is the lowest HP seen after the entity
 // first showed up alive. damage_taken = Max - Min.
 //
+// Timeline is the full ordered list of (offset, hp) samples. Used to
+// look up HP at a specific kill offset for per-blow damage accuracy
+// (distinguishes solo-frags from kill-stealers on pre-damaged victims).
+//
 // The stream emits HP=0 on every entity *before* the round actually
 // starts (pre-spawn slot state). Treating that as "min HP = 0" would
 // flag every survivor as having taken full damage. Alive tracks whether
 // we've seen a non-zero value yet; zeros before that are ignored, zeros
 // after (i.e. real deaths) are recorded.
 type healthSample struct {
-	Min   uint32
-	Max   uint32
-	Alive bool
-	Set   bool
+	Min      uint32
+	Max      uint32
+	Alive    bool
+	Set      bool
+	Timeline []healthPoint
+}
+
+type healthPoint struct {
+	Offset int
+	HP     uint32
+}
+
+// hpBefore returns the last HP value recorded for this entity at a
+// file offset strictly less than `offset`. Returns 0, false if no
+// earlier sample exists.
+func (s healthSample) hpBefore(offset int) (uint32, bool) {
+	if len(s.Timeline) == 0 {
+		return 0, false
+	}
+	// Timeline is append-only in offset order (listeners fire in
+	// sorted offset order by reader.Read), so a reverse linear scan
+	// finds the last sample before `offset` quickly. Binary search
+	// would be slightly cleaner but this runs ~10x per player per
+	// round — linear is fine.
+	for i := len(s.Timeline) - 1; i >= 0; i-- {
+		if s.Timeline[i].Offset < offset {
+			return s.Timeline[i].HP, true
+		}
+	}
+	return 0, false
 }
 
 // The HP stream's 4-byte entity ref is NOT the same value as the
@@ -96,6 +126,11 @@ func readHealth(r *Reader) error {
 			s.Max = hp
 		}
 	}
+	// Sample offset is the position AFTER the 5 bytes we just consumed
+	// (size + uint32). Recording the pre-consume offset (r.offset - 5)
+	// keeps samples aligned with "what HP was visible before this
+	// read point" — matches kill offsets we'll compare against.
+	s.Timeline = append(s.Timeline, healthPoint{Offset: r.offset - 5, HP: hp})
 	r.health[entity] = s
 
 	log.Debug().

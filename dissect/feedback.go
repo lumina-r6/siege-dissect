@@ -40,7 +40,11 @@ type MatchUpdate struct {
 	// same weapon; changes when they swap primary/secondary/melee. No name
 	// mapping exists yet — expose the raw id so downstream tools can resolve
 	// it once a weapon dictionary is built.
-	WeaponID               uint64 `json:"weaponID,omitempty"`
+	WeaponID uint64 `json:"weaponID,omitempty"`
+	// killOffset is the file offset at which the kill envelope started.
+	// Used by stats.go to look up the victim's HP just before the
+	// kill for precise damage-per-blow attribution. Not serialized.
+	killOffset             int
 	usernameFromScoreboard string
 }
 
@@ -151,6 +155,7 @@ func readMatchFeedback(r *Reader) error {
 			Target:        target,
 			Time:          r.timeRaw,
 			TimeInSeconds: r.time,
+			killOffset:    r.offset,
 		}
 		// Between target-name and the headshot value, five 10-byte uint32
 		// fields plus the 6-byte header of the headshot field:

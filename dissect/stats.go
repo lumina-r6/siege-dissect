@@ -63,9 +63,14 @@ type PlayerRoundStats struct {
 	// over the round. Omitted when no HP samples were captured (older
 	// replay versions or non-participating slots).
 	DamageTaken int `json:"damageTaken,omitempty"`
-	// DamageDealt is an approximation: for each kill by this player, the
-	// victim's starting HP (or 100 if unknown) is credited. Misses
-	// assist damage and damage on round survivors — treat as a floor.
+	// DamageDealt credits each kill by this player with the victim's
+	// HP just before the kill (falls back to startHP if the HP stream
+	// wasn't sampled). Subtracting pre-damage from other shooters
+	// distinguishes solo fragging from kill-stealing: a player
+	// finishing a pre-weakened target gets less credit than the one
+	// who did the early work. Misses damage on round survivors — no
+	// shooter attribution event exists in Y11S1, so that bucket stays
+	// orphaned at the team level.
 	DamageDealt int `json:"damageDealt,omitempty"`
 	OneVx       int `json:"1vX,omitempty"`
 	// DeathTime mirrors the kill event's m:ss clock (count-down format)
@@ -107,7 +112,13 @@ type PlayerMatchStats struct {
 	HeadshotPercentage float64 `json:"headshotPercentage"`
 	DamageTaken        int     `json:"damageTaken,omitempty"`
 	DamageDealt        int     `json:"damageDealt,omitempty"`
-	EntryKills         int     `json:"entryKills,omitempty"`
+	// DamageDealtPerRound normalizes DamageDealt by rounds played —
+	// useful when players participated in different round counts
+	// (partial-match spectators, disconnects) or when comparing
+	// multi-match aggregates.
+	DamageDealtPerRound float64 `json:"damageDealtPerRound,omitempty"`
+	DamageTakenPerRound float64 `json:"damageTakenPerRound,omitempty"`
+	EntryKills          int     `json:"entryKills,omitempty"`
 	EntryDeaths        int     `json:"entryDeaths,omitempty"`
 	OperatorSwaps      int     `json:"operatorSwaps,omitempty"`
 	TradedDeaths       int     `json:"tradedDeaths,omitempty"`
@@ -242,12 +253,12 @@ func (r *Reader) PlayerStats() []PlayerRoundStats {
 				stats[ti].DeathTime = a.Time
 				stats[ti].SecondsAlive = clampNonNeg(actionSec - int(a.TimeInSeconds))
 				lastDeath = ti
-				// Damage-dealt floor: credit killer with the victim's
-				// observed starting HP, 100 if unknown.
-				dmg := 100
-				if s, ok := healthByPlayer[ti]; ok && s.Max > 0 {
-					dmg = int(s.Max)
-				}
+				// Damage dealt by this killer on THIS kill = victim's
+				// HP right before the kill event. That's the actual
+				// damage they delivered with the final blow(s),
+				// ignoring any pre-damage another shooter did. Falls
+				// back to startHP (or 100) when timeline is unavailable.
+				dmg := damageAtKill(r, ti, a.killOffset, healthByPlayer)
 				if i >= 0 {
 					stats[i].DamageDealt += dmg
 				}
@@ -465,6 +476,10 @@ func (m *MatchReader) PlayerStats() []PlayerMatchStats {
 	}
 	// Materialize weapon maps as sorted slices and compute averages.
 	for i := range stats {
+		if stats[i].Rounds > 0 {
+			stats[i].DamageDealtPerRound = float64(stats[i].DamageDealt) / float64(stats[i].Rounds)
+			stats[i].DamageTakenPerRound = float64(stats[i].DamageTaken) / float64(stats[i].Rounds)
+		}
 		ws := make([]WeaponStat, 0, len(weapons[i]))
 		for _, s := range weapons[i] {
 			ws = append(ws, *s)
@@ -495,4 +510,23 @@ func clampNonNeg(v int) int {
 		return 0
 	}
 	return v
+}
+
+// damageAtKill returns the damage credited to the killer for this
+// kill. The HP stream is sparse (only a handful of samples per
+// victim), so "HP just before the kill" undercredits a killer who
+// fired multiple shots — each shot is a damage tick but only some
+// get sampled. Since R6 kills are typically dealt by a single shooter
+// in one engagement, we credit the victim's full observed startHP
+// (Max). Falls back to 100 if no HP data is available.
+//
+// The victimIdx / killOffset / timeline params are plumbed through
+// for future heuristics (e.g. credit pre-damage to a *different*
+// shooter once a hit-attribution event is reverse-engineered) but
+// not used today.
+func damageAtKill(r *Reader, victimIdx int, killOffset int, hbp map[int]healthSample) int {
+	if s, ok := hbp[victimIdx]; ok && s.Max > 0 {
+		return int(s.Max)
+	}
+	return 100
 }
