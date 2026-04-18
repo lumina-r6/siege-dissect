@@ -30,6 +30,10 @@ type Reader struct {
 	playersRead              int
 	lastKillerFromScoreboard string
 	health                   map[uint32]healthSample
+	// Y11S1+ per-entity scoreboard updates keyed by raw 4-byte entity
+	// ref. Resolved to player index in stats.go via playerForEntity.
+	scoreboardScore   map[uint32]uint32
+	scoreboardAssists map[uint32]uint32
 	Header                   Header        `json:"header"`
 	MatchFeedback            []MatchUpdate `json:"matchFeedback"`
 	Scoreboard               Scoreboard

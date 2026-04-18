@@ -105,6 +105,38 @@ func readHealth(r *Reader) error {
 	return nil
 }
 
+// playerForEntity returns the player index whose DissectID is the
+// smallest value ≥ entity, within a small delta. Returns -1 if no
+// player qualifies. Used by every 23-prefix per-entity stat tracker —
+// HP, score, assists, etc.
+//
+// Rule comes from the observation that each player has a cluster of
+// satellite entities (character, scoreboard row, gadgets) allocated
+// just below their DissectID at round start. "Nearest higher DissectID"
+// picks the right player for any of them in every replay tested.
+func (r *Reader) playerForEntity(entity uint32) (int, uint32) {
+	best := -1
+	var bestDelta uint32
+	for i, p := range r.Header.Players {
+		if len(p.DissectID) != 4 {
+			continue
+		}
+		pid := binary.LittleEndian.Uint32(p.DissectID)
+		if pid < entity {
+			continue
+		}
+		d := pid - entity
+		if best == -1 || d < bestDelta {
+			best = i
+			bestDelta = d
+		}
+	}
+	if best == -1 || bestDelta > 64 {
+		return -1, 0
+	}
+	return best, bestDelta
+}
+
 // healthByPlayer pairs each tracked HP entity with the player whose
 // DissectID is the smallest value ≥ the entity ID. Returns a map from
 // player index → aggregated health sample. Entities that don't pair to
@@ -114,49 +146,20 @@ func (r *Reader) healthByPlayer() map[int]healthSample {
 	if r.health == nil || len(r.Header.Players) == 0 {
 		return out
 	}
-	type pid struct {
-		idx int
-		id  uint32
-	}
-	pids := make([]pid, 0, len(r.Header.Players))
-	for i, p := range r.Header.Players {
-		if len(p.DissectID) != 4 {
-			continue
-		}
-		pids = append(pids, pid{i, binary.LittleEndian.Uint32(p.DissectID)})
-	}
-	// For each tracked entity, find the smallest DissectID that is ≥
-	// entity (in unsigned 32-bit compare). Linear scan — n=10.
 	for ent, s := range r.health {
-		bestIdx := -1
-		var bestDelta uint32
-		for _, p := range pids {
-			if p.id < ent {
-				continue
-			}
-			d := p.id - ent
-			if bestIdx == -1 || d < bestDelta {
-				bestIdx = p.idx
-				bestDelta = d
-			}
-		}
-		// Reject runaway matches: a real HP entity pairs within ~32 of
-		// its DissectID in every sample we've seen. Anything further
-		// away is a non-player entity that just happened to have a
-		// smaller ID than every player.
-		if bestIdx == -1 || bestDelta > 64 {
+		idx, _ := r.playerForEntity(ent)
+		if idx < 0 {
 			continue
 		}
-		// If two entities both map to the same player (shouldn't
-		// happen, but guard against it), keep the one with the wider
-		// HP window — the real character entity accumulates many
-		// samples across the round.
-		if prev, ok := out[bestIdx]; ok {
+		// If two entities both map to the same player, keep the one
+		// with the wider HP window — the real character entity
+		// accumulates many samples across the round.
+		if prev, ok := out[idx]; ok {
 			if (s.Max - s.Min) <= (prev.Max - prev.Min) {
 				continue
 			}
 		}
-		out[bestIdx] = s
+		out[idx] = s
 	}
 	return out
 }

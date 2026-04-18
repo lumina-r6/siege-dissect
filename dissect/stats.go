@@ -97,6 +97,7 @@ type PlayerMatchStats struct {
 	Kills              int     `json:"kills"`
 	Deaths             int     `json:"deaths"`
 	Assists            int     `json:"assists"`
+	Score              int     `json:"score"`
 	Headshots          int     `json:"headshots"`
 	HeadshotPercentage float64 `json:"headshotPercentage"`
 	DamageTaken        int     `json:"damageTaken,omitempty"`
@@ -178,14 +179,35 @@ func (r *Reader) PlayerStats() []PlayerRoundStats {
 	if r.Header.Teams[1].Won {
 		winningTeamIndex = 1
 	}
+	// Resolve 23-prefix entity maps to player index once.
+	scoreByPlayer := make(map[int]uint32)
+	for ent, v := range r.scoreboardScore {
+		if idx, _ := r.playerForEntity(ent); idx >= 0 && v > scoreByPlayer[idx] {
+			scoreByPlayer[idx] = v
+		}
+	}
+	assistsByPlayer := make(map[int]uint32)
+	for ent, v := range r.scoreboardAssists {
+		if idx, _ := r.playerForEntity(ent); idx >= 0 && v > assistsByPlayer[idx] {
+			assistsByPlayer[idx] = v
+		}
+	}
 	for i, p := range r.Header.Players {
 		scorePlayer := r.Scoreboard.Players[i]
+		score := int(scorePlayer.Score)
+		if s, ok := scoreByPlayer[i]; ok && int(s) > score {
+			score = int(s)
+		}
+		assists := int(scorePlayer.AssistsFromRound)
+		if a, ok := assistsByPlayer[i]; ok && int(a) > assists {
+			assists = int(a)
+		}
 		stats = append(stats, PlayerRoundStats{
 			Username:  p.Username,
 			TeamIndex: p.TeamIndex,
 			Operator:  p.Operator.String(),
-			Assists:   int(scorePlayer.AssistsFromRound),
-			Score:     int(scorePlayer.Score),
+			Assists:   assists,
+			Score:     score,
 		})
 		index[p.Username] = i
 	}
@@ -371,6 +393,7 @@ func (m *MatchReader) PlayerStats() []PlayerMatchStats {
 				stats[i].Deaths += 1
 			}
 			stats[i].Assists += p.Assists
+			stats[i].Score += p.Score
 			stats[i].Headshots += p.Headshots
 			stats[i].HeadshotPercentage = headshotPercentage(stats[i].Headshots, stats[i].Kills)
 			stats[i].DamageDealt += p.DamageDealt
