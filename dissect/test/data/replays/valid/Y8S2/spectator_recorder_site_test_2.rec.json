@@ -468,7 +468,8 @@
 			"target": "MaTaroX.ND1",
 			"headshot": true,
 			"time": "2:29",
-			"timeInSeconds": 149
+			"timeInSeconds": 149,
+			"weaponID": 1366019640
 		},
 		{
 			"type": {
@@ -479,7 +480,8 @@
 			"target": "Axrzen.ND1",
 			"headshot": false,
 			"time": "1:38",
-			"timeInSeconds": 98
+			"timeInSeconds": 98,
+			"weaponID": 133651070294
 		},
 		{
 			"type": {
@@ -490,7 +492,8 @@
 			"target": "ilyPozo.Vega",
 			"headshot": false,
 			"time": "1:35",
-			"timeInSeconds": 95
+			"timeInSeconds": 95,
+			"weaponID": 1366019340
 		},
 		{
 			"type": {
@@ -501,7 +504,8 @@
 			"target": "qtNolf.Vega",
 			"headshot": false,
 			"time": "1:34",
-			"timeInSeconds": 94
+			"timeInSeconds": 94,
+			"weaponID": 1366019304
 		},
 		{
 			"type": {
@@ -512,7 +516,8 @@
 			"target": "Ben.ND1",
 			"headshot": false,
 			"time": "1:33",
-			"timeInSeconds": 93
+			"timeInSeconds": 93,
+			"weaponID": 1366019592
 		},
 		{
 			"type": {
@@ -523,7 +528,8 @@
 			"target": "Bashaa.ND1",
 			"headshot": true,
 			"time": "1:27",
-			"timeInSeconds": 87
+			"timeInSeconds": 87,
+			"weaponID": 1366019652
 		},
 		{
 			"type": {
@@ -534,7 +540,8 @@
 			"target": "zTHMS.ND1",
 			"headshot": false,
 			"time": "0:00",
-			"timeInSeconds": 0
+			"timeInSeconds": 0,
+			"weaponID": 1366019640
 		}
 	],
 	"Scoreboard": {

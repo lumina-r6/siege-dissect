@@ -366,7 +366,8 @@
 			"target": "Metaxa.SOOS",
 			"headshot": false,
 			"time": "1:11",
-			"timeInSeconds": 71
+			"timeInSeconds": 71,
+			"weaponID": 1366019640
 		},
 		{
 			"type": {
@@ -377,7 +378,8 @@
 			"target": "Chili.SOOS",
 			"headshot": true,
 			"time": "0:52",
-			"timeInSeconds": 52
+			"timeInSeconds": 52,
+			"weaponID": 78526932091
 		},
 		{
 			"type": {
@@ -388,7 +390,8 @@
 			"target": "Erdnuss.SOOS",
 			"headshot": true,
 			"time": "0:45",
-			"timeInSeconds": 45
+			"timeInSeconds": 45,
+			"weaponID": 1366019604
 		},
 		{
 			"type": {
@@ -399,7 +402,8 @@
 			"target": "DejaVu_BTW",
 			"headshot": true,
 			"time": "0:40",
-			"timeInSeconds": 40
+			"timeInSeconds": 40,
+			"weaponID": 39149214704
 		},
 		{
 			"type": {
@@ -410,7 +414,8 @@
 			"target": "Knoblauch.SOOS",
 			"headshot": false,
 			"time": "0:40",
-			"timeInSeconds": 40
+			"timeInSeconds": 40,
+			"weaponID": 78526932091
 		},
 		{
 			"type": {
@@ -421,7 +426,8 @@
 			"target": "SZIATEBUZI3156",
 			"headshot": false,
 			"time": "0:37",
-			"timeInSeconds": 37
+			"timeInSeconds": 37,
+			"weaponID": 55586802030
 		},
 		{
 			"type": {
@@ -432,7 +438,8 @@
 			"target": "Vanille.SOOS",
 			"headshot": false,
 			"time": "0:35",
-			"timeInSeconds": 35
+			"timeInSeconds": 35,
+			"weaponID": 168013421941
 		}
 	],
 	"Scoreboard": {

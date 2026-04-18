@@ -459,7 +459,8 @@
 			"target": "Ben.ND1",
 			"headshot": false,
 			"time": "1:19",
-			"timeInSeconds": 79
+			"timeInSeconds": 79,
+			"weaponID": 291191166795
 		},
 		{
 			"type": {
@@ -470,7 +471,8 @@
 			"target": "yMk.Vega",
 			"headshot": true,
 			"time": "1:18",
-			"timeInSeconds": 78
+			"timeInSeconds": 78,
+			"weaponID": 39149214686
 		},
 		{
 			"type": {
@@ -481,7 +483,8 @@
 			"target": "prvx.Vega",
 			"headshot": true,
 			"time": "1:05",
-			"timeInSeconds": 65
+			"timeInSeconds": 65,
+			"weaponID": 1366019652
 		},
 		{
 			"type": {
@@ -492,7 +495,8 @@
 			"target": "OxyD.Vega",
 			"headshot": true,
 			"time": "0:37",
-			"timeInSeconds": 37
+			"timeInSeconds": 37,
+			"weaponID": 1366019208
 		},
 		{
 			"type": {
@@ -503,7 +507,8 @@
 			"target": "ilyPozo.Vega",
 			"headshot": false,
 			"time": "0:04",
-			"timeInSeconds": 4
+			"timeInSeconds": 4,
+			"weaponID": 39149214668
 		},
 		{
 			"type": {
@@ -514,7 +519,8 @@
 			"target": "qtNolf.Vega",
 			"headshot": false,
 			"time": "0:00",
-			"timeInSeconds": 0
+			"timeInSeconds": 0,
+			"weaponID": 1366019652
 		}
 	],
 	"Scoreboard": {

@@ -370,7 +370,8 @@
 			"target": "Clampett_",
 			"headshot": false,
 			"time": "2:34",
-			"timeInSeconds": 154
+			"timeInSeconds": 154,
+			"weaponID": 1366019400
 		},
 		{
 			"type": {
@@ -381,7 +382,8 @@
 			"target": "A-._",
 			"headshot": false,
 			"time": "2:28",
-			"timeInSeconds": 148
+			"timeInSeconds": 148,
+			"weaponID": 202492079847
 		},
 		{
 			"type": {
@@ -392,7 +394,8 @@
 			"target": "itsrafaelgotu",
 			"headshot": false,
 			"time": "2:17",
-			"timeInSeconds": 137
+			"timeInSeconds": 137,
+			"weaponID": 1366019652
 		},
 		{
 			"type": {
@@ -403,7 +406,8 @@
 			"target": "hello182",
 			"headshot": true,
 			"time": "2:16",
-			"timeInSeconds": 136
+			"timeInSeconds": 136,
+			"weaponID": 161289761758
 		},
 		{
 			"type": {
@@ -414,7 +418,8 @@
 			"target": "SCP-31870",
 			"headshot": true,
 			"time": "2:06",
-			"timeInSeconds": 126
+			"timeInSeconds": 126,
+			"weaponID": 161289761758
 		},
 		{
 			"type": {
@@ -425,7 +430,8 @@
 			"target": "Erdnuss.SOOS",
 			"headshot": false,
 			"time": "2:05",
-			"timeInSeconds": 125
+			"timeInSeconds": 125,
+			"weaponID": 68967567430
 		},
 		{
 			"type": {
@@ -436,7 +442,8 @@
 			"target": "gbarna.djk",
 			"headshot": false,
 			"time": "1:11",
-			"timeInSeconds": 71
+			"timeInSeconds": 71,
+			"weaponID": 133651070294
 		},
 		{
 			"type": {
@@ -447,7 +454,8 @@
 			"target": "Knoblauch.SOOS",
 			"headshot": true,
 			"time": "0:30",
-			"timeInSeconds": 30
+			"timeInSeconds": 30,
+			"weaponID": 168013421941
 		}
 	],
 	"Scoreboard": {

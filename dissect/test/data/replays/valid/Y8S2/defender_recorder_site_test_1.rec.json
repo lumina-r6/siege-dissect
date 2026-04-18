@@ -409,7 +409,8 @@
 			"target": "clikx_",
 			"headshot": true,
 			"time": "2:40",
-			"timeInSeconds": 160
+			"timeInSeconds": 160,
+			"weaponID": 1366019220
 		},
 		{
 			"type": {
@@ -420,7 +421,8 @@
 			"target": "redraskal",
 			"headshot": false,
 			"time": "2:26",
-			"timeInSeconds": 146
+			"timeInSeconds": 146,
+			"weaponID": 133651070436
 		},
 		{
 			"type": {
@@ -431,7 +433,8 @@
 			"target": "reclown6",
 			"headshot": true,
 			"time": "2:23",
-			"timeInSeconds": 143
+			"timeInSeconds": 143,
+			"weaponID": 1366019256
 		},
 		{
 			"type": {
@@ -442,7 +445,8 @@
 			"target": "Dyslexic-Batnam",
 			"headshot": true,
 			"time": "2:13",
-			"timeInSeconds": 133
+			"timeInSeconds": 133,
+			"weaponID": 1366019256
 		},
 		{
 			"type": {
@@ -453,7 +457,8 @@
 			"target": "D0n4ldDuck69",
 			"headshot": false,
 			"time": "2:10",
-			"timeInSeconds": 130
+			"timeInSeconds": 130,
+			"weaponID": 133651070294
 		},
 		{
 			"type": {
@@ -464,7 +469,8 @@
 			"target": "FunTimeSpacey",
 			"headshot": false,
 			"time": "2:07",
-			"timeInSeconds": 127
+			"timeInSeconds": 127,
+			"weaponID": 1366019340
 		}
 	],
 	"Scoreboard": {

@@ -383,7 +383,8 @@
 			"target": "Metaxa.SOOS",
 			"headshot": true,
 			"time": "1:11",
-			"timeInSeconds": 71
+			"timeInSeconds": 71,
+			"weaponID": 1366019640
 		},
 		{
 			"type": {
@@ -394,7 +395,8 @@
 			"target": "Chili.SOOS",
 			"headshot": false,
 			"time": "0:44",
-			"timeInSeconds": 44
+			"timeInSeconds": 44,
+			"weaponID": 1366019640
 		},
 		{
 			"type": {
@@ -405,7 +407,8 @@
 			"target": "Erdnuss.SOOS",
 			"headshot": false,
 			"time": "0:12",
-			"timeInSeconds": 12
+			"timeInSeconds": 12,
+			"weaponID": 127174504008
 		},
 		{
 			"type": {
@@ -416,7 +419,8 @@
 			"target": "QWERTUSZ",
 			"headshot": false,
 			"time": "0:07",
-			"timeInSeconds": 7
+			"timeInSeconds": 7,
+			"weaponID": 1366019304
 		},
 		{
 			"type": {
@@ -427,7 +431,8 @@
 			"target": "MilusANevem",
 			"headshot": false,
 			"time": "0:07",
-			"timeInSeconds": 7
+			"timeInSeconds": 7,
+			"weaponID": 168013421923
 		},
 		{
 			"type": {
@@ -438,7 +443,8 @@
 			"target": "Du-Simulant.",
 			"headshot": true,
 			"time": "0:00",
-			"timeInSeconds": 0
+			"timeInSeconds": 0,
+			"weaponID": 1366019304
 		},
 		{
 			"type": {

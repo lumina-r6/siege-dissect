@@ -366,7 +366,8 @@
 			"target": "BleisusChrist",
 			"headshot": true,
 			"time": "2:28",
-			"timeInSeconds": 148
+			"timeInSeconds": 148,
+			"weaponID": 44316587819
 		},
 		{
 			"type": {
@@ -377,7 +378,8 @@
 			"target": "Mr.Cuhh",
 			"headshot": false,
 			"time": "2:21",
-			"timeInSeconds": 141
+			"timeInSeconds": 141,
+			"weaponID": 1366019604
 		},
 		{
 			"type": {
@@ -388,7 +390,8 @@
 			"target": "IllIIllIlIlIll",
 			"headshot": true,
 			"time": "2:20",
-			"timeInSeconds": 140
+			"timeInSeconds": 140,
+			"weaponID": 44316587819
 		},
 		{
 			"type": {
@@ -399,7 +402,8 @@
 			"target": "Shives007",
 			"headshot": true,
 			"time": "2:04",
-			"timeInSeconds": 124
+			"timeInSeconds": 124,
+			"weaponID": 1366019316
 		},
 		{
 			"type": {
@@ -410,7 +414,8 @@
 			"target": "redraskal",
 			"headshot": true,
 			"time": "2:00",
-			"timeInSeconds": 120
+			"timeInSeconds": 120,
+			"weaponID": 1366019220
 		},
 		{
 			"type": {
@@ -421,7 +426,8 @@
 			"target": "weasil4211",
 			"headshot": true,
 			"time": "1:46",
-			"timeInSeconds": 106
+			"timeInSeconds": 106,
+			"weaponID": 68967567508
 		},
 		{
 			"type": {
@@ -432,7 +438,8 @@
 			"target": "MUSTARD691",
 			"headshot": true,
 			"time": "1:40",
-			"timeInSeconds": 100
+			"timeInSeconds": 100,
+			"weaponID": 44316587819
 		}
 	],
 	"Scoreboard": {

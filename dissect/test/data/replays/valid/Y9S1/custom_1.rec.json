@@ -428,7 +428,8 @@
 			"target": "Moves.oL",
 			"headshot": false,
 			"time": "2:34",
-			"timeInSeconds": 154
+			"timeInSeconds": 154,
+			"weaponID": 127174504008
 		},
 		{
 			"type": {
@@ -439,7 +440,8 @@
 			"target": "Wry2K",
 			"headshot": false,
 			"time": "2:02",
-			"timeInSeconds": 122
+			"timeInSeconds": 122,
+			"weaponID": 78526932091
 		},
 		{
 			"type": {
@@ -450,7 +452,8 @@
 			"target": "KicksFN.",
 			"headshot": true,
 			"time": "2:01",
-			"timeInSeconds": 121
+			"timeInSeconds": 121,
+			"weaponID": 78526932091
 		},
 		{
 			"type": {
@@ -461,7 +464,8 @@
 			"target": "Dec-.",
 			"headshot": false,
 			"time": "1:50",
-			"timeInSeconds": 110
+			"timeInSeconds": 110,
+			"weaponID": 78526932091
 		},
 		{
 			"type": {
@@ -472,7 +476,8 @@
 			"target": "GiIiBVG.a5",
 			"headshot": true,
 			"time": "1:41",
-			"timeInSeconds": 101
+			"timeInSeconds": 101,
+			"weaponID": 1366019340
 		},
 		{
 			"type": {
@@ -483,7 +488,8 @@
 			"target": "Iefou",
 			"headshot": false,
 			"time": "1:17",
-			"timeInSeconds": 77
+			"timeInSeconds": 77,
+			"weaponID": 1366019340
 		},
 		{
 			"type": {
@@ -494,7 +500,8 @@
 			"target": "JayPhistol.",
 			"headshot": false,
 			"time": "1:00",
-			"timeInSeconds": 60
+			"timeInSeconds": 60,
+			"weaponID": 13333481354
 		}
 	],
 	"Scoreboard": {
