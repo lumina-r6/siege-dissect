@@ -559,6 +559,13 @@ func (r *Reader) deriveTeamRoles() {
 			continue
 		}
 		role := p.Operator.Role()
+		if role == "" {
+			// Unknown operator (e.g. post-Y10S3 operators in a fork still
+			// pinned to older operator tables). Skip and try the next player
+			// — as long as one player on either team has a known operator we
+			// can still derive both team roles here.
+			continue
+		}
 		teamIndex := p.TeamIndex
 		oppositeTeamIndex := teamIndex ^ 1
 		if role == Attack {
