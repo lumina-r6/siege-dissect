@@ -88,6 +88,11 @@ type PlayerRoundStats struct {
 	TradedDeath   bool `json:"tradedDeath,omitempty"`
 	UntradedDeath bool `json:"untradedDeath,omitempty"`
 	TradeKill     bool `json:"tradeKill,omitempty"`
+	// PlantedDefuser is true for the attacker who completed the
+	// plant; DisabledDefuser for the defender who completed the
+	// disable. At most one of each per round in a normal Bomb match.
+	PlantedDefuser  bool `json:"plantedDefuser,omitempty"`
+	DisabledDefuser bool `json:"disabledDefuser,omitempty"`
 }
 
 type PlayerMatchStats struct {
@@ -108,6 +113,8 @@ type PlayerMatchStats struct {
 	TradedDeaths       int     `json:"tradedDeaths,omitempty"`
 	UntradedDeaths     int     `json:"untradedDeaths,omitempty"`
 	TradeKills         int     `json:"tradeKills,omitempty"`
+	DefuserPlants      int     `json:"defuserPlants,omitempty"`
+	DefuserDisables    int     `json:"defuserDisables,omitempty"`
 	// AvgSecondsAlive is the per-round mean of SecondsAlive across all
 	// rounds played — survivors contribute the full round duration.
 	AvgSecondsAlive float64         `json:"avgSecondsAlive,omitempty"`
@@ -294,6 +301,14 @@ func (r *Reader) PlayerStats() []PlayerRoundStats {
 			if i >= 0 {
 				stats[i].OperatorSwaps++
 			}
+		case DefuserPlantComplete:
+			if i >= 0 {
+				stats[i].PlantedDefuser = true
+			}
+		case DefuserDisableComplete:
+			if i >= 0 {
+				stats[i].DisabledDefuser = true
+			}
 		}
 	}
 	// Survivors spent the full action phase alive.
@@ -413,6 +428,12 @@ func (m *MatchReader) PlayerStats() []PlayerMatchStats {
 			}
 			if p.TradeKill {
 				stats[i].TradeKills++
+			}
+			if p.PlantedDefuser {
+				stats[i].DefuserPlants++
+			}
+			if p.DisabledDefuser {
+				stats[i].DefuserDisables++
 			}
 			secondsAliveTotal[i] += p.SecondsAlive
 			// Clutch breakdown — OneVx carries the size (1..5) of the
