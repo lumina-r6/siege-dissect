@@ -170,16 +170,63 @@ func readPlayer(r *Reader) error {
 	return err
 }
 
+// prepPhaseSwapHeader is the 5-byte sentinel that marks a prep-phase / pre-round
+// operator-swap packet (Pattern A). Mid-round swaps (Pattern B) instead begin with
+// the player-id marker directly. See comment in readAtkOpSwap below.
+var prepPhaseSwapHeader = []byte{0x22, 0xB6, 0xB7, 0x1D, 0xD2}
+
+// midRoundSwapMarker is the 5-byte sentinel immediately preceding the 4-byte
+// player DissectID in both swap-packet variants. We seek past it to land on
+// the player id.
+var midRoundSwapMarker = []byte{0x1A, 0x5E, 0xF7, 0xD9, 0x9D}
+
 func readAtkOpSwap(r *Reader) error {
 	op, err := r.Uint64()
 	if err != nil {
 		return err
 	}
+	// op=0 is a "no operator selected" placeholder that fires on the same
+	// magic bytes as real swaps (e.g. at end of round / pre-lobby state).
+	// Ignoring these preserves the pre-fix behavior: the original handler
+	// was accidentally robust to op=0 because the subsequent 4 bytes it
+	// misread as player_id never matched anyone. With the dual-pattern
+	// fix below we'd now land on a real player id and wipe their operator.
+	if op == 0 {
+		return nil
+	}
 	o := Operator(op)
 	// before Y9S3 caster view overhaul
 	if r.Header.CodeVersion < Y9S3 {
-		if err = r.Skip(5); err != nil {
+		// Two packet layouts reach this handler:
+		//
+		//   Pattern A — prep-phase swap (player picks op before round start):
+		//     [op_id] 22 B6 B7 1D D2 | 04 01 00 00 00 | 1A 5E F7 D9 9D | [player_id]
+		//
+		//   Pattern B — mid-round swap (e.g. Dokkaebi callback, ability retrigger):
+		//     [op_id] 1A 5E F7 D9 9D | [player_id]
+		//
+		// The original implementation only handled Pattern B by skipping 5 and
+		// reading 4 — which works because the 5 skipped bytes are the marker
+		// "1A 5E F7 D9 9D" itself. Pattern A events were silently dropped
+		// because the bytes the handler read as player_id happened to be
+		// "04 01 00 00", which matches nobody.
+		//
+		// We peek 5 bytes to disambiguate: Pattern A starts with the sentinel
+		// "22 B6 B7 1D D2" and has 10 bytes of additional filler before the
+		// player_id.
+		head, err := r.Bytes(5)
+		if err != nil {
 			return err
+		}
+		if bytes.Equal(head, prepPhaseSwapHeader) {
+			if err := r.Skip(10); err != nil {
+				return err
+			}
+		} else if !bytes.Equal(head, midRoundSwapMarker) {
+			// Unknown packet variant — bail without emitting, rather than
+			// misreading the next 4 bytes as a player id.
+			log.Debug().Hex("head", head).Interface("op", op).Msg("op_swap: unknown variant, skipping")
+			return nil
 		}
 		id, err := r.Bytes(4)
 		if err != nil {
