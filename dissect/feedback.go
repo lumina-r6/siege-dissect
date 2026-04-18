@@ -35,6 +35,12 @@ type MatchUpdate struct {
 	TimeInSeconds          float64         `json:"timeInSeconds"`
 	Message                string          `json:"message,omitempty"`
 	Operator               Operator        `json:"operator,omitempty"`
+	// WeaponID is the 8-byte weapon identifier emitted by the kill packet.
+	// Same value repeats across consecutive kills by the same player on the
+	// same weapon; changes when they swap primary/secondary/melee. No name
+	// mapping exists yet — expose the raw id so downstream tools can resolve
+	// it once a weapon dictionary is built.
+	WeaponID               uint64 `json:"weaponID,omitempty"`
 	usernameFromScoreboard string
 }
 
@@ -56,6 +62,12 @@ func (i *MatchUpdateType) UnmarshalJSON(data []byte) (err error) {
 
 var activity2 = []byte{0x00, 0x00, 0x00, 0x22, 0xe3, 0x09, 0x00, 0x79}
 var killIndicator = []byte{0x22, 0xd9, 0x13, 0x3c, 0xba}
+
+// killPacketWeaponMarker is the 5-byte tag prefixing the 8-byte weapon id
+// that follows the kill packet's headshot byte. Verified constant across all
+// Y8S1 / Y8S2 / Y9S1 test replays. If it stops matching we log and skip the
+// extra decode rather than misreading the next packet.
+var killPacketWeaponMarker = []byte{0x22, 0xF8, 0x6C, 0xDD, 0x65}
 
 func readMatchFeedback(r *Reader) error {
 	if r.Header.CodeVersion >= Y9S1Update3 {
@@ -105,7 +117,13 @@ func readMatchFeedback(r *Reader) error {
 		if empty {
 			log.Debug().Str("warn", "kill username empty").Send()
 		}
-		// No idea what these 15 bytes mean (kill type?)
+		// The kill packet is a sequence of field-framed entries, each laid
+		// out as [5-byte tag][1-byte size][size bytes]. Between killer and
+		// target the framing takes 15 bytes:
+		//   22 C1 98 DE 70  04  XX 00 00 00   — uint32: killer team index+1
+		//   22 AC 19 0F 70                     — tag for the target-name string
+		// Values are observed but not exposed; we just skip past them and
+		// let r.String() below pick up the length-prefixed target username.
 		if err = r.Skip(15); err != nil {
 			return err
 		}
@@ -134,6 +152,15 @@ func readMatchFeedback(r *Reader) error {
 			Time:          r.timeRaw,
 			TimeInSeconds: r.time,
 		}
+		// Between target-name and the headshot value, five 10-byte uint32
+		// fields plus the 6-byte header of the headshot field:
+		//   22 78 2E 7B 50 04 XX 00 00 00      — uint32: target team index+1
+		//   22 8D A8 3D D1 04 XX 00 00 00      — uint32: killer team index+1 (repeat)
+		//   22 53 B8 87 31 04 XX 00 00 00      — uint32: target team index+1 (repeat)
+		//   22 A5 AD 64 0B 04 00 00 00 00      — uint32: always 0 (role? assist?)
+		//   22 90 3E BF 37 04 01 00 00 00      — uint32: always 1 (kill confirmed?)
+		//   22 C3 5B A4 4E 01                  — tag+size for the 1-byte headshot flag
+		// Total: 5*10 + 6 = 56. The headshot value itself follows as an Int().
 		if err = r.Skip(56); err != nil {
 			return err
 		}
@@ -146,6 +173,23 @@ func readMatchFeedback(r *Reader) error {
 			*headshotPtr = true
 		}
 		u.Headshot = headshotPtr
+		// Weapon id — a uint64 hash identifying the weapon used. Stable across
+		// consecutive kills by the same player on the same weapon. We check
+		// the tag before reading so that unknown packet variants (future
+		// seasons, unseen kill subtypes) don't misalign the stream.
+		mark, err := r.Bytes(5)
+		if err != nil {
+			return err
+		}
+		if bytes.Equal(mark, killPacketWeaponMarker) {
+			wid, err := r.Uint64()
+			if err != nil {
+				return err
+			}
+			u.WeaponID = wid
+		} else {
+			log.Debug().Hex("got", mark).Msg("kill: weapon-id marker mismatch, skipping weapon decode")
+		}
 		// Ignore duplicates
 		for _, val := range r.MatchFeedback {
 			if val.Type == Kill && val.Username == u.Username && val.Target == u.Target {
