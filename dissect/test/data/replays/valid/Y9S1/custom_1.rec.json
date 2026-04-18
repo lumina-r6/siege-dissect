@@ -26,12 +26,14 @@
 		"teams": [
 			{
 				"name": "JAY",
+				"startingScore": 0,
 				"score": 0,
 				"won": false,
 				"role": "Attack"
 			},
 			{
 				"name": "GOHLY",
+				"startingScore": 0,
 				"score": 1,
 				"won": true,
 				"winCondition": "KilledOpponents",
@@ -266,6 +268,136 @@
 				"name": "OperatorSwap",
 				"id": 7
 			},
+			"username": "JayPhistol.",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Thermite",
+				"id": 92270642760
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Moves.oL",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ace",
+				"id": 104189664390
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "KicksFN.",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Buck",
+				"id": 92270642474
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Dec-.",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ash",
+				"id": 92270642656
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Wry2K",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Sledge",
+				"id": 92270642344
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "GiIiBVG.a5",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Aruni",
+				"id": 104189664704
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Tricz.a5",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Castle",
+				"id": 92270642682
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "GohlyBVG.a5",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Frost",
+				"id": 92270642500
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Iefou",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Alibi",
+				"id": 104189662071
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "TaterBot",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Valkyrie",
+				"id": 92270642188
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
 			"username": "Wry2K",
 			"time": "0:23",
 			"timeInSeconds": 23,
@@ -364,5 +496,69 @@
 			"time": "1:00",
 			"timeInSeconds": 60
 		}
-	]
+	],
+	"Scoreboard": {
+		"Players": [
+			{
+				"ID": "vcEX8A==",
+				"Score": 330,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "rsEX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "n8EX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "zMEX8A==",
+				"Score": 445,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "28EX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "TsEX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "XcEX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "bMEX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "e8EX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "isEX8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			}
+		]
+	}
 }

@@ -26,6 +26,7 @@
 		"teams": [
 			{
 				"name": "OPPONENTS",
+				"startingScore": 0,
 				"score": 1,
 				"won": true,
 				"winCondition": "KilledOpponents",
@@ -33,6 +34,7 @@
 			},
 			{
 				"name": "YOUR TEAM",
+				"startingScore": 0,
 				"score": 0,
 				"won": false,
 				"role": "Defense"
@@ -191,6 +193,136 @@
 	"matchFeedback": [
 		{
 			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "dragonslayer_cp",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Iana",
+				"id": 104189664038
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "D0n4ldDuck69",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Sledge",
+				"id": 92270642344
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "phsVB.mid",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ash",
+				"id": 92270642656
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "phsVB.lib",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Zero",
+				"id": 291191151607
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Kmgraytrone747",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Thermite",
+				"id": 92270642760
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "redraskal",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Wamai",
+				"id": 104189663803
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "FunTimeSpacey",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mira",
+				"id": 92270644319
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "clikx_",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mozzie",
+				"id": 174977508820
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Dyslexic-Batnam",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Bandit",
+				"id": 92270642526
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "reclown6",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Vigil",
+				"id": 92270644293
+			}
+		},
+		{
+			"type": {
 				"name": "Other",
 				"id": 10
 			},
@@ -334,5 +466,69 @@
 			"time": "2:07",
 			"timeInSeconds": 127
 		}
-	]
+	],
+	"Scoreboard": {
+		"Players": [
+			{
+				"ID": "a+QF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "d+QF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "X+QF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "g+QF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "j+QF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "HeQF8A==",
+				"Score": 130,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "KeQF8A==",
+				"Score": 285,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "NeQF8A==",
+				"Score": 340,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "QeQF8A==",
+				"Score": 250,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "TeQF8A==",
+				"Score": 210,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			}
+		]
+	}
 }

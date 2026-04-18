@@ -26,12 +26,14 @@
 		"teams": [
 			{
 				"name": "YOUR TEAM",
+				"startingScore": 0,
 				"score": 0,
 				"won": false,
 				"role": "Attack"
 			},
 			{
 				"name": "OPPONENTS",
+				"startingScore": 0,
 				"score": 2,
 				"won": true,
 				"winCondition": "KilledOpponents",
@@ -191,6 +193,136 @@
 	"matchFeedback": [
 		{
 			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Knoblauch.SOOS",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Brava",
+				"id": 288200866821
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Erdnuss.SOOS",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Osa",
+				"id": 288200867444
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Clampett_",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Thermite",
+				"id": 92270642760
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "gbarna.djk",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Nomad",
+				"id": 161289666248
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "itsrafaelgotu",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Kali",
+				"id": 104189663920
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Kabelband",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ela",
+				"id": 92270644163
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "hello182",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Azami",
+				"id": 378305069945
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Jordan96791",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mozzie",
+				"id": 174977508820
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "A-._",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Smoke",
+				"id": 92270642396
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "SCP-31870",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Warden",
+				"id": 104189662920
+			}
+		},
+		{
+			"type": {
 				"name": "Other",
 				"id": 10
 			},
@@ -317,5 +449,69 @@
 			"time": "0:30",
 			"timeInSeconds": 30
 		}
-	]
+	],
+	"Scoreboard": {
+		"Players": [
+			{
+				"ID": "X5gE8A==",
+				"Score": 530,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "aZgE8A==",
+				"Score": 0,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "c5gE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "fZgE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "h5gE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "KJgE8A==",
+				"Score": 0,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "PJgE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "RpgE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "UJgE8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "QmkF8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			}
+		]
+	}
 }

@@ -4,7 +4,7 @@
 		"codeVersion": 7601998,
 		"timestamp": "2023-06-08T21:04:24Z",
 		"matchType": {
-			"name": "CustomGameOnline",
+			"name": "Standard",
 			"id": 8
 		},
 		"map": {
@@ -26,6 +26,7 @@
 		"teams": [
 			{
 				"name": "VEGA ESPORTS",
+				"startingScore": 0,
 				"score": 3,
 				"won": true,
 				"winCondition": "KilledOpponents",
@@ -33,6 +34,7 @@
 			},
 			{
 				"name": "NEEDONE AGENCY",
+				"startingScore": 0,
 				"score": 5,
 				"won": false,
 				"role": "Attack"
@@ -263,6 +265,136 @@
 	"matchFeedback": [
 		{
 			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "ilyPozo.Vega",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mira",
+				"id": 92270644319
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "yMk.Vega",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Azami",
+				"id": 378305069945
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "qtNolf.Vega",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Kaid",
+				"id": 161289666230
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "prvx.Vega",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Castle",
+				"id": 92270642682
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "OxyD.Vega",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Wamai",
+				"id": 104189663803
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "MaTaroX.ND1",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ash",
+				"id": 92270642656
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "zTHMS.ND1",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Maverick",
+				"id": 104189662384
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Bashaa.ND1",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ace",
+				"id": 104189664390
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Axrzen.ND1",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Iana",
+				"id": 104189664038
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Ben.ND1",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Thatcher",
+				"id": 92270642422
+			}
+		},
+		{
+			"type": {
 				"name": "Other",
 				"id": 10
 			},
@@ -404,5 +536,69 @@
 			"time": "0:00",
 			"timeInSeconds": 0
 		}
-	]
+	],
+	"Scoreboard": {
+		"Players": [
+			{
+				"ID": "6EAT8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "9EAT8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "AEET8A==",
+				"Score": 0,
+				"Assists": 3,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "DEET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "GEET8A==",
+				"Score": 0,
+				"Assists": 3,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "KkET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "NkET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "QkET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "TkET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "WkET8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			}
+		]
+	}
 }

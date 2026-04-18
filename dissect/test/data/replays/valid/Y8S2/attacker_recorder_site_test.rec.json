@@ -26,12 +26,14 @@
 		"teams": [
 			{
 				"name": "YOUR TEAM",
+				"startingScore": 0,
 				"score": 0,
 				"won": false,
 				"role": "Attack"
 			},
 			{
 				"name": "OPPONENTS",
+				"startingScore": 0,
 				"score": 1,
 				"won": true,
 				"winCondition": "KilledOpponents",
@@ -187,6 +189,136 @@
 	"matchFeedback": [
 		{
 			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "redraskal",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Gridlock",
+				"id": 174977508808
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "FORIIEGNER",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Nokk",
+				"id": 104189663024
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Shives007",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Fuze",
+				"id": 92270642032
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "BlackTakis69",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Ace",
+				"id": 104189664390
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Melon_.-",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "IQ",
+				"id": 92270642578
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "weasil4211",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Warden",
+				"id": 104189662920
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "MUSTARD691",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Oryx",
+				"id": 104189664155
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "Mr.Cuhh",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Solis",
+				"id": 391752120891
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "BleisusChrist",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mira",
+				"id": 92270644319
+			}
+		},
+		{
+			"type": {
+				"name": "OperatorSwap",
+				"id": 7
+			},
+			"username": "IllIIllIlIlIll",
+			"time": "0:00",
+			"timeInSeconds": 0,
+			"operator": {
+				"name": "Mute",
+				"id": 92270642318
+			}
+		},
+		{
+			"type": {
 				"name": "Other",
 				"id": 10
 			},
@@ -307,5 +439,69 @@
 			"time": "1:03",
 			"timeInSeconds": 63
 		}
-	]
+	],
+	"Scoreboard": {
+		"Players": [
+			{
+				"ID": "0f0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "xf0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "uf0A8A==",
+				"Score": 0,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "of0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "X/0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "a/0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "d/0A8A==",
+				"Score": 0,
+				"Assists": 1,
+				"AssistsFromRound": 1
+			},
+			{
+				"ID": "g/0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "j/0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			},
+			{
+				"ID": "rf0A8A==",
+				"Score": 0,
+				"Assists": 0,
+				"AssistsFromRound": 0
+			}
+		]
+	}
 }
