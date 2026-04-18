@@ -10,7 +10,15 @@ type PlayerRoundStats struct {
 	Assists            int     `json:"assists"`
 	Headshots          int     `json:"headshots"`
 	HeadshotPercentage float64 `json:"headshotPercentage"`
-	OneVx              int     `json:"1vX,omitempty"`
+	// DamageTaken is derived from the HP stream: startHP - minHP observed
+	// over the round. Omitted when no HP samples were captured (older
+	// replay versions or non-participating slots).
+	DamageTaken int `json:"damageTaken,omitempty"`
+	// DamageDealt is an approximation: for each kill by this player, the
+	// victim's starting HP (or 100 if unknown) is credited. Misses
+	// assist damage and damage on round survivors — treat as a floor.
+	DamageDealt int `json:"damageDealt,omitempty"`
+	OneVx       int `json:"1vX,omitempty"`
 }
 
 type PlayerMatchStats struct {
@@ -22,6 +30,8 @@ type PlayerMatchStats struct {
 	Assists            int     `json:"assists"`
 	Headshots          int     `json:"headshots"`
 	HeadshotPercentage float64 `json:"headshotPercentage"`
+	DamageTaken        int     `json:"damageTaken,omitempty"`
+	DamageDealt        int     `json:"damageDealt,omitempty"`
 }
 
 // OpeningKill returns the first player to kill.
@@ -97,6 +107,7 @@ func (r *Reader) PlayerStats() []PlayerRoundStats {
 		})
 		index[p.Username] = i
 	}
+	healthByPlayer := r.healthByPlayer()
 	lastDeath := -1
 	for _, a := range r.MatchFeedback {
 		i := index[a.Username]
@@ -106,11 +117,36 @@ func (r *Reader) PlayerStats() []PlayerRoundStats {
 				stats[i].Headshots += 1
 			}
 			stats[i].HeadshotPercentage = headshotPercentage(stats[i].Headshots, stats[i].Kills)
-			stats[index[a.Target]].Died = true
-			lastDeath = index[a.Target]
+			ti := index[a.Target]
+			stats[ti].Died = true
+			lastDeath = ti
+			// Credit the killer with the victim's starting HP as a
+			// damage-dealt floor. Falls back to 100 if HP was never
+			// observed for the victim (e.g. they never took damage
+			// before dying, or HP stream wasn't captured).
+			dmg := 100
+			if s, ok := healthByPlayer[ti]; ok && s.Max > 0 {
+				dmg = int(s.Max)
+			}
+			stats[i].DamageDealt += dmg
 		} else if a.Type == Death {
 			stats[i].Died = true
 			lastDeath = i
+		}
+	}
+	// Fill DamageTaken from the HP min/max window per player. Players
+	// who died always took their full starting HP — the HP stream
+	// frequently stops updating before the killing blow (especially on
+	// one-shot headshots), so we fall back to Max for the died case.
+	for i := range stats {
+		s, ok := healthByPlayer[i]
+		if !ok {
+			continue
+		}
+		if stats[i].Died {
+			stats[i].DamageTaken = int(s.Max)
+		} else {
+			stats[i].DamageTaken = int(s.Max - s.Min)
 		}
 	}
 	// Calculates 1vX
@@ -184,6 +220,8 @@ func (m *MatchReader) PlayerStats() []PlayerMatchStats {
 			stats[i].Assists += p.Assists
 			stats[i].Headshots += p.Headshots
 			stats[i].HeadshotPercentage = headshotPercentage(stats[i].Headshots, stats[i].Kills)
+			stats[i].DamageDealt += p.DamageDealt
+			stats[i].DamageTaken += p.DamageTaken
 		}
 	}
 	return stats

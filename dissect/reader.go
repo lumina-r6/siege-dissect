@@ -29,6 +29,7 @@ type Reader struct {
 	readPartial              bool // reads up to the player info packets
 	playersRead              int
 	lastKillerFromScoreboard string
+	health                   map[uint32]healthSample
 	Header                   Header        `json:"header"`
 	MatchFeedback            []MatchUpdate `json:"matchFeedback"`
 	Scoreboard               Scoreboard
@@ -70,6 +71,7 @@ func NewReader(in io.Reader) (r *Reader, err error) {
 	r.Listen([]byte{0xEC, 0xDA, 0x4F, 0x80}, readScoreboardScore)
 	r.Listen([]byte{0x4D, 0x73, 0x7F, 0x9E}, readScoreboardAssists)
 	r.Listen([]byte{0x1C, 0xD2, 0xB1, 0x9D}, readScoreboardKills)
+	r.Listen(healthTag, readHealth)
 	return r, err
 }
 
