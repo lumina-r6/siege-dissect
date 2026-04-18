@@ -25,4 +25,12 @@ const (
 	Y10S2_5     int = 9158643
 	Y10S3       int = 9199003
 	Y10S3_1     int = 9211553
+
+	// Y11 constants below are observed from real replay headers rather than
+	// lifted from an upstream release list. Add more patch builds (Y11S1_1,
+	// Y11S2, ...) as replays for them come in. Nothing in the parser
+	// currently gates on Y11 specifically — these exist so GameVersion
+	// strings like "Y11S1_Alpha03" are no longer orphan numeric codes in
+	// logs and so future season-gated logic has a named anchor.
+	Y11S1_Alpha03 int = 9625601
 )
